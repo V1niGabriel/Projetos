@@ -1,8 +1,8 @@
 /*
-Título: Poker de Dados
-Descrição: Um jogo semelhante o poker que funciona com dados do computador.
+TÃ­tulo: Poker de Dados
+DescriÃ§Ã£o: Um jogo semelhante o poker que funciona com dados do computador.
 Autor: Vinicius Gabriel
-Data de Criação: 13/08/2024
+Data de CriaÃ§Ã£o: 13/08/2024
 */
 
 //Bibliotecas
@@ -11,10 +11,10 @@ Data de Criação: 13/08/2024
 #include <time.h>
 #include <stdlib.h>
 
-//variavéis globais
+//variavÃ©is globais
 int armazenamento[5], maior = 0;
 
-//função de valor aleatório
+//funÃ§Ã£o de valor aleatÃ³rio
 void jogar_dados (){
 	for (int j = 0; j < 5; j++){
 		int n = (rand() % 6) + 1;
@@ -22,7 +22,7 @@ void jogar_dados (){
 	}
 }
 
-//verifica se o número é maior
+//verifica se o nÃºmero Ã© maior
 int verifica(int m){
 	if (m > maior){
 		maior = m;
@@ -30,7 +30,7 @@ int verifica(int m){
 	return (maior);
 }
 
-//Linha 1 até 6 - soma de todos os 1's até 6's: Soma os valores igauis
+//Linha 1 atÃ© 6 - soma de todos os 1's atÃ© 6's: Soma os valores igauis
 int Soma_valor(int valor) {
 	int retorno;
 	retorno = 0;
@@ -42,18 +42,18 @@ int Soma_valor(int valor) {
 	return (retorno);
 }
 
-//Verificação do valor das linha 7 e 8: (caso haja 3 ou mais dados com o mesmo valor) - soma de todos os dados
+//VerificaÃ§Ã£o do valor das linha 7 e 8: (caso haja 3 ou mais dados com o mesmo valor) - soma de todos os dados
 int ganhar_ponto(int valor) {
 	int cont; 
 	int retorno;
 	int copy_armazenamento[5];
 	
-	//cópia do vetor global amrazenamento para um vetor local
+	//cÃ³pia do vetor global amrazenamento para um vetor local
 	for (int i = 0; i < 5; i++){
 		copy_armazenamento[i] = armazenamento[i]; 
 	}
 	
-	//conta a quantidade de repetições dos elementos presentes no vetor
+	//conta a quantidade de repetiÃ§Ãµes dos elementos presentes no vetor
 	cont = 0;
 	for (int i = 0; i < 5; i++) {
 		for (int j = 0; j < 5; j++) {
@@ -75,12 +75,12 @@ int ganhar_ponto(int valor) {
 	return (retorno);	
 }
 
-//verificação da linha 9: caso haja 3 dados com um valor e 2 dados com o mesmo valor, diferente do primeiro - 25pt
+//verificaÃ§Ã£o da linha 9: caso haja 3 dados com um valor e 2 dados com o mesmo valor, diferente do primeiro - 25pt
 int Par_trio () {
 	int cont;
 	int contadores[5], copy_armazenamento[5];
 	
-	//cópia do vetor global amrazenamento para um vetor local
+	//cÃ³pia do vetor global amrazenamento para um vetor local
 	for (int i = 0; i < 5; i++){
 		copy_armazenamento[i] = armazenamento[i]; 
 	}
@@ -101,16 +101,16 @@ int Par_trio () {
 	}
 }
 
-/*Verficação da linha 10 e 11: 
-	Linha 10 (sequência menor): caso haja 4 ou mais dados em sequência - 30pt
-	Linha 11 (sequência maior): caso haja 5 dados em sequência - 40pt
+/*VerficaÃ§Ã£o da linha 10 e 11: 
+	Linha 10 (sequÃªncia menor): caso haja 4 ou mais dados em sequÃªncia - 30pt
+	Linha 11 (sequÃªncia maior): caso haja 5 dados em sequÃªncia - 40pt
 */
 int Sequencia_menor_maior(int valor) {
 	int cont_sequencia; 
 	
 	cont_sequencia = 0;
 	for(int a = 0; a < 5; a++) {
-		//verifica se o valor atual é consecutivo do anterior 
+		//verifica se o valor atual Ã© consecutivo do anterior 
 		if (armazenamento[a] == armazenamento[a-1] + 1){
 			cont_sequencia += 1;
 		}
@@ -120,10 +120,10 @@ int Sequencia_menor_maior(int valor) {
 	}
 	
 	if (cont_sequencia >= valor) {
-		if(valor = 4) {  //pontos da sequência menor (4)
+		if(valor = 4) {  //pontos da sequÃªncia menor (4)
 			return(30);
 		}
-		else if (valor = 5) { //pontos da sequência maior (5)
+		else if (valor = 5) { //pontos da sequÃªncia maior (5)
 			return(40);
 		}
 	}
@@ -147,7 +147,7 @@ int iguais_os_5 () {
 	}
 }
 
-//Linha 13: com qualquer combinação de dados - a soma de todos os dados
+//Linha 13: com qualquer combinaÃ§Ã£o de dados - a soma de todos os dados
 int Reserva() {
 	int somatorio;
 	
@@ -159,36 +159,40 @@ int Reserva() {
 	return (somatorio);
 }
 
-//Inicialização principal do código
+//InicializaÃ§Ã£o principal do cÃ³digo
 int main() {
 	
-	srand(time(NULL)); // Server para gerar uma semente com numeros aleatórios
+	srand(time(NULL)); // Server para gerar uma semente com numeros aleatÃ³rios
 	
-	char requisito[3]; //controle de rodada e continuação do jogo.
+	char requisito[3]; //controle de rodada e continuaÃ§Ã£o do jogo.
 	int jogador1[13], jogador2[13];
-	int retorno1, jogador_atual, soma, partida;
+	int retorno1, jogador_atual, soma, partida, Soma_total1, Soma_total2;
 	int a, b, c;
-	
+
+	a = 0;
+	b = 0;
 	for (partida = 1; partida < 27; partida++) {
 		printf("\nPARTIDA %d\n", partida);
+		soma = 0;
+		maior = 0;
 		
 		jogador_atual = (partida % 2) == 0 ? 2:1;
 		
-		printf("Jogador %d \nJogar os dados? [s/n]:", jogador_atual); // Quem tá jogando (Jogador 1 ou jogador 2).
+		printf("Jogador %d \nJogar os dados? [s/n]:", jogador_atual); // Quem tÃ¡ jogando (Jogador 1 ou jogador 2).
 		fgets(requisito, 2, stdin);
 		while ((c = getchar()) != '\n' && c !=  EOF); //limpa o buffer
 	
 		if (requisito[0] == 's') {
-			jogar_dados(); //chama a função de números aleatórios
+			jogar_dados(); //chama a funÃ§Ã£o de nÃºmeros aleatÃ³rios
 			
-			//Linha 1 até 6
+			//Linha 1 atÃ© 6
 			for (int n = 0; n < 7; n++){
 				retorno1 = Soma_valor(n);
 				soma = verifica(retorno1);
 					
 				//Linha 7 e 8
-				if ((n == 3) || (n == 4)){ // 3 ou 4 -> pois é a quantidade de elemento repitidos necessários.
-					retorno1 = ganhar_ponto(n); // n -> vai para "valor" na função ganhar_pontos.
+				if ((n == 3) || (n == 4)){ // 3 ou 4 -> pois Ã© a quantidade de elemento repitidos necessÃ¡rios.
+					retorno1 = ganhar_ponto(n); // n -> vai para "valor" na funÃ§Ã£o ganhar_pontos.
 					soma = verifica(retorno1);
 				}
 			}					
@@ -221,6 +225,14 @@ int main() {
 			continue;
 		}
 	}
+	//Soma de todos  os pontos
+	for (int n = 0; n < 13; n++){
+		Soma_total1 += jogador1[n];
+		Soma_total2 += jogador2[n];
+	}
+	
+	printf("\nPontuacao Total\n Jogador1: %d\n Jogador2: %d\n", Soma_total1, Soma_total2);
+
 		
 	return 0;
 }
