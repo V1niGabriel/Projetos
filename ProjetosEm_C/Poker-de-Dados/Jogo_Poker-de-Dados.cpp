@@ -10,6 +10,7 @@ Data de Criação: 13/08/2024
 #include <math.h>
 #include <time.h>
 #include <stdlib.h>
+#include <string.h>
 
 //variavéis globais
 int armazenamento[5], maior = 0;
@@ -165,8 +166,9 @@ int main() {
 	srand(time(NULL)); // Server para gerar uma semente com numeros aleatórios
 	
 	char requisito[3]; //controle de rodada e continuação do jogo.
+	char Linha[100];
 	int jogador1[13] = {0}, jogador2[13] = {0};
-	int retorno1, jogador_atual, soma, partida, Soma_total1, Soma_total2;
+	int retorno1, jogador_atual, soma, partida, Soma_total1, Soma_total2, comparador;
 	int a, b, c;
 	
 	a = 0;
@@ -210,6 +212,21 @@ int main() {
 			//Linha 13
 			retorno1 = Reserva();
 			soma = verifica(retorno1);
+			
+			//Verificador da linha com maior pontuação
+			for (int j = 1; j < 7; j++){
+				if (comparador < Soma_valor(j)){
+					comparador = Soma_valor(j);
+					if ((comparador % 1) == 0){
+						strcpy(Linha, "Linha 1, Soma todos os 1's");
+					}
+					else if((comparador % 2) == 0 && ((comparador % 4) != 0)){
+						strcpy(Linha, "Linha 2, Soma todos os 2's");
+					}
+					else if ((comparador % 3) == 0) {	
+					}
+				}
+			}
 				
 			//Armazenamento dos pontos das rodadas
 			if (jogador_atual == 1){
@@ -255,4 +272,3 @@ int main() {
 		
 	return 0;
 }
-
