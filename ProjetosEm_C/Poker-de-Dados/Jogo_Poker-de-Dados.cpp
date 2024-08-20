@@ -165,7 +165,7 @@ int main() {
 	srand(time(NULL)); // Server para gerar uma semente com numeros aleatórios
 	
 	char requisito[3]; //controle de rodada e continuação do jogo.
-	int jogador1[13], jogador2[13];
+	int jogador1[13] = {0}, jogador2[13] = {0};
 	int retorno1, jogador_atual, soma, partida, Soma_total1, Soma_total2;
 	int a, b, c;
 
@@ -225,6 +225,8 @@ int main() {
 			continue;
 		}
 	}
+	Soma_total1 = 0;
+	Soma_total2 = 0;
 	//Soma de todos  os pontos
 	for (int n = 0; n < 13; n++){
 		Soma_total1 += jogador1[n];
@@ -232,6 +234,12 @@ int main() {
 	}
 	
 	printf("\nPontuacao Total\n Jogador1: %d\n Jogador2: %d\n", Soma_total1, Soma_total2);
+	if (Soma_total1 > Soma_total2){
+		printf("JOGADOR 1 VENCEDOR!!!!!!!");
+	}
+	else {
+		printf("JOGADOR 2 VENCEDOR!!!!!!!");
+	}
 
 		
 	return 0;
