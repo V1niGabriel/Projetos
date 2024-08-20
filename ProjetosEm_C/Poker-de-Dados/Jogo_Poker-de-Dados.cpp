@@ -96,7 +96,7 @@ int Par_trio () {
 		contadores[i] = cont + 1;
 	}
 	
-	if ((contadores[0] || contadores[1] == 2) && (contadores[0] || contadores[1] == 3)){
+	if ((contadores[0] || contadores[1] == 2) && (contadores[0] || contadores[1] == 3) != 1){
 		return (25);
 	}
 }
@@ -168,7 +168,7 @@ int main() {
 	int jogador1[13] = {0}, jogador2[13] = {0};
 	int retorno1, jogador_atual, soma, partida, Soma_total1, Soma_total2;
 	int a, b, c;
-
+	
 	a = 0;
 	b = 0;
 	for (partida = 1; partida < 27; partida++) {
@@ -214,14 +214,24 @@ int main() {
 			//Armazenamento dos pontos das rodadas
 			if (jogador_atual == 1){
 				jogador1[a] = soma;
+				printf("Pontuacao(1): %d\n", jogador1[a]);
 				a++;
 			}
 			else {
 				jogador2[b] = soma;
+				printf("Pontuacao(2): %d\n", jogador2[b]);
 				b++;
 			}
 		}
 		else {
+			if (jogador_atual == 1){
+				jogador1[a] = 0;
+				a++;
+			}
+			else {
+				jogador2[b] = 0;
+				b++;
+			}
 			continue;
 		}
 	}
@@ -233,8 +243,9 @@ int main() {
 		Soma_total2 += jogador2[n];
 	}
 	
+	//Saída de dados;
 	printf("\nPontuacao Total\n Jogador1: %d\n Jogador2: %d\n", Soma_total1, Soma_total2);
-	if (Soma_total1 > Soma_total2){
+		if (Soma_total1 > Soma_total2){
 		printf("JOGADOR 1 VENCEDOR!!!!!!!");
 	}
 	else {
@@ -244,5 +255,4 @@ int main() {
 		
 	return 0;
 }
-
 
